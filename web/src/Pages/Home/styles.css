@@ -24,3 +24,13 @@
     background-size: contain;
     background-position: center;
 }
+
+@media screen and (max-width: 810px) {
+    .presentation-content {
+        flex-direction: column-reverse;
+    }
+
+    .presentation-content h2 {
+        padding-top: 60px;
+    }
+}

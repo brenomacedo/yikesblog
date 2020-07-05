@@ -64,3 +64,13 @@
     cursor: pointer;
     outline: none;
 }
+
+@media screen and (max-width: 510px) {
+    .navigation {
+        flex-direction: column-reverse;
+    }
+
+    .search-bar {
+        padding-bottom: 10px;
+    }
+}
