@@ -2,3 +2,25 @@
     min-height: 100vh;
     background-color: #0099ff;
 }
+
+.presentation-content {
+    padding: 60px;
+    padding-top: 90px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.presentation-content h2 {
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    max-width: 700px;
+}
+
+.presentation-content-image {
+    background-image: url('/fire.png');
+    min-width: 400px;
+    height: 400px;
+    background-size: contain;
+    background-position: center;
+}

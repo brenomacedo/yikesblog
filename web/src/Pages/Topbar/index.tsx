@@ -10,7 +10,7 @@ const TopBar = () => {
                 <h3>Yikes!</h3>
             </div>
             <div className="navigation">
-                <h3>About</h3>
+                <h3 className="navigation-option">About</h3>
                 <div className="search-bar">
                     <input placeholder='Search something' className="search-input" type="text"/>
                     <button className="search-button"><FaSearch color='white' size={18} /></button>
