@@ -1,0 +1,33 @@
+.login-container {
+    min-height: 100vh;
+    background-color: #0099ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+}
+
+.login-container form input {
+    padding: 8px;
+    border: 0;
+    outline: none;
+    margin: 3px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+}
+
+.login-container form button {
+    padding: 8px;
+    font-size: 20px;
+    border: 0;
+    outline: none;
+    margin: 3px;
+    background-color: #03fc90;
+    color: white;
+    font-weight: bold;
+}
