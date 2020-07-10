@@ -25,6 +25,48 @@
     background-position: center;
 }
 
+.slider {
+    width: 900px;
+}
+
+.each-slide-1, .each-slide-2, .each-slide-3 {
+    width: 900px;
+    cursor: pointer;
+}
+
+.each-slide-1 .slide-image {
+    background-image: url('/slide1.png');
+    height: 450px;
+}
+
+.each-slide-2 .slide-image {
+    background-image: url('/slide2.png');
+    height: 450px;
+}
+
+.each-slide-3 .slide-image {
+    background-image: url('/slide3.png');
+    height: 450px;
+}
+
+.slider-wrapper {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.slider-wrapper h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 40px;
+    padding: 20px;
+}
+
+.slide-title {
+    color: white;
+    background-color: #0099ff;
+}
+
 @media screen and (max-width: 810px) {
     .presentation-content {
         flex-direction: column-reverse;

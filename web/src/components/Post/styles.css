@@ -11,6 +11,7 @@
     box-shadow: 2px 3px 36px -8px rgba(0,0,0,0.75);
     transition: 0.5s;
     margin: 12px;
+    cursor: pointer;
 }
 
 .post:hover {

@@ -1,9 +1,22 @@
 import React from 'react'
+import { Slide } from 'react-slideshow-image'
 import TopBar from '../../components/Topbar'
 import LastPosts from '../../components/LastPosts'
+import Footer from '../../components/Footer'
+import 'react-slideshow-image/dist/styles.css'
 import './styles.css'
 
 const Home = () => {
+
+    const properties =  {
+        duration: 3000,
+        transitionDuration: 300,
+        infinite: true,
+        indicators: true,
+        arrows: false,
+        pauseOnHover: true
+    }
+
     return (
         <div className="home-container">
             <div className="presentation">
@@ -22,9 +35,26 @@ const Home = () => {
                 </svg>
             </div>
             <div className="slider-wrapper">
-
+                <h2>Most visited</h2>
+                <div className="slider">
+                    <Slide {...properties}>
+                        <div className="each-slide-1">
+                            <div className="slide-image"></div>
+                            <h2 className="slide-title">Top 30 extensões do VSCODE</h2>
+                        </div>
+                        <div className="each-slide-2">
+                            <div className="slide-image"></div>
+                            <h2 className="slide-title">GraphQL ou REST, qual usar?</h2>
+                        </div>
+                        <div className="each-slide-3">
+                            <div className="slide-image"></div>
+                            <h2 className="slide-title">Como começar no React Native</h2>
+                        </div>
+                    </Slide>
+                </div>
             </div>
             <LastPosts />
+            <Footer />
         </div>
     )
 }
