@@ -4,7 +4,7 @@
     padding: 20px;
 }
 
-.posts .post {
+.post {
     width: 270px;
     -webkit-box-shadow: 2px 3px 36px -8px rgba(0,0,0,0.75);
     -moz-box-shadow: 2px 3px 36px -8px rgba(0,0,0,0.75);
@@ -18,7 +18,7 @@
     transform: scale(1.05);
 }
 
-.posts .post .post-image {
+.post .post-image {
     height: 180px;
     background-image: url('/image.png');
     background-size: cover;

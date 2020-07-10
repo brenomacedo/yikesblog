@@ -1,0 +1,9 @@
+.post-content {
+    min-height: 100vh;
+}
+
+.other-posts {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
