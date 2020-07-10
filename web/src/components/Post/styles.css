@@ -35,3 +35,9 @@
     padding: 5px;
     color: white;
 }
+
+@media screen and (max-width: 600px) {
+    .posts {
+        justify-content: center;
+    }
+}

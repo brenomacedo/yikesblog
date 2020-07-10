@@ -7,3 +7,9 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
+@media screen and (max-width: 600px) {
+    .other-posts {
+        justify-content: center;
+    }
+}
