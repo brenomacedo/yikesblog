@@ -1,5 +1,6 @@
 import React from 'react'
-import TopBar from '../Topbar'
+import TopBar from '../../components/Topbar'
+import LastPosts from '../../components/LastPosts'
 import './styles.css'
 
 const Home = () => {
@@ -20,6 +21,10 @@ const Home = () => {
                     <path fill="#0099ff" fill-opacity="1" d="M0,160L80,176C160,192,320,224,480,218.7C640,213,800,171,960,144C1120,117,1280,107,1360,101.3L1440,96L1440,0L1360,0C1280,0,1120,0,960,0C800,0,640,0,480,0C320,0,160,0,80,0L0,0Z"></path>
                 </svg>
             </div>
+            <div className="slider-wrapper">
+
+            </div>
+            <LastPosts />
         </div>
     )
 }

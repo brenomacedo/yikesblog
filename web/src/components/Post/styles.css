@@ -1,0 +1,36 @@
+.posts {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px;
+}
+
+.posts .post {
+    width: 270px;
+    -webkit-box-shadow: 2px 3px 36px -8px rgba(0,0,0,0.75);
+    -moz-box-shadow: 2px 3px 36px -8px rgba(0,0,0,0.75);
+    box-shadow: 2px 3px 36px -8px rgba(0,0,0,0.75);
+    transition: 0.5s;
+    margin: 12px;
+}
+
+.post:hover {
+    transform: scale(1.05);
+}
+
+.posts .post .post-image {
+    height: 180px;
+    background-image: url('/image.png');
+    background-size: cover;
+    background-position: contain;
+}
+
+.post-title {
+    background-color: #0099ff;
+}
+
+.post-title p {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    padding: 5px;
+    color: white;
+}
