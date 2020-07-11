@@ -117,3 +117,44 @@
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
 }
+
+.view-posts {
+    display: flex;
+    flex-direction: column;
+}
+
+.view-posts .post {
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.view-posts .post .post-title h3 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.view-posts .post .post-image {
+    width: 70px;
+    height: 50px;
+    background-image: url('/slide1.png');
+    background-size: cover;
+    background-position: center;
+}
+
+.update {
+    background-color: orange;
+    border: 0;
+    outline: none;
+    padding: 10px;
+    margin-right: 5px;
+}
+
+.delete {
+    background-color: red;
+    border: 0;
+    outline: none;
+    padding: 10px;
+}

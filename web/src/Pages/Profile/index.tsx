@@ -1,5 +1,5 @@
 import React from "react";
-import { FiLogOut } from "react-icons/fi";
+import { FiLogOut, FiTrash, FiEdit } from "react-icons/fi";
 import { Editor } from "@tinymce/tinymce-react";
 import "./styles.css";
 
@@ -53,7 +53,13 @@ const Profile = () => {
             <div className="view-posts">
                 <div className="post">
                     <div className="post-image"></div>
-                    <div className="post-title"></div>
+                    <div className="post-title">
+                        <h3>Como integrar o graphQL com react</h3>
+                    </div>
+                    <div className="view-posts-options">
+                        <button className="update"><FiEdit size={20} color='white' /></button>
+                        <button className="delete"><FiTrash size={20} color='white' /></button>
+                    </div>
                 </div>
             </div>
         </div>
