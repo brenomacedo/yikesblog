@@ -74,6 +74,46 @@
 }
 
 .selected-option {
-    height: 400px;
     background-color: white;
+    display: flex;
+    flex-direction: column;
+}
+
+.upload-button {
+    width: 100%;
+    outline: none;
+    border: 0;
+    background-color: #2ac74e;
+    color: white;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+}
+
+.create-button {
+    width: 100%;
+    outline: none;
+    border: 0;
+    background-color: #4aff74;
+    color: white;
+    height: 50px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
+    flex-grow: 1;
+}
+
+.create-post {
+    display: flex;
+    flex-direction: column;
+}
+
+.create-post h3 {
+    font-family: 'Open Sans', sans-serif;
+    padding: 3px;
+}
+
+.create-post input {
+    padding: 5px;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 18px;
 }
