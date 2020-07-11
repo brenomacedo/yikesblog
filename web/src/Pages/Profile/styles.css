@@ -1,0 +1,79 @@
+.profile-container {
+    min-height: 100vh;
+    background-color: #0099ff;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 10px;
+}
+.profile-container h2 {
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    text-align: center;
+    padding: 10px;
+}
+
+.admin-info {
+    display: flex;
+    align-items: center;
+}
+
+.admin-info h3 {
+    color: white;
+    font-size: 20px;
+    font-family: 'Open Sans', sans-serif;
+    padding: 0 20px;
+}
+
+.admin-bar {
+    padding: 20px;
+    background-color: #0076c4;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.admin-image {
+    background-image: url('/plasmawisp.png');
+    width: 50px;
+    height: 50px;
+    border-radius: 50px;
+    background-size: cover;
+    background-position: center;
+    background-color: white;
+}
+
+.logout {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.logout h3 {
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    padding: 0 10px;
+}
+
+.panel {
+    width: 800px;
+}
+
+.panel-options {
+    display: flex;
+}
+
+.option {
+    padding: 10px;
+    background-color: #1166ff;
+    color: white;
+    font-family: 'Open Sans', sans-serif;
+    margin-right: 1px;
+    cursor: pointer;
+}
+
+.selected-option {
+    height: 400px;
+    background-color: white;
+}
