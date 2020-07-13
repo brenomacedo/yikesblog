@@ -1,16 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { FiLogOut, FiTrash, FiEdit } from "react-icons/fi";
 import { Editor } from "@tinymce/tinymce-react";
 import "./styles.css";
 
-const createPost = () => {
+const CreatePost = () => {
+
+  const [text, setText] = useState('')
+
+  const handleEditorChange = (content: string, editor: string) => {
+    setText(content)
+    console.log(text)
+  }
+
   return (
     <div className="create-post">
         <h3>Post title:</h3>
         <input type="text" />
         <Editor
+            value={text} onEditorChange={handleEditorChange}
             apiKey="w32catiriiirutgmkiypr53w0cpy3rughud01410u38ke1i6"
-            initialValue=""
             init={{
             height: 300,
             menubar: false,
@@ -24,10 +32,27 @@ const createPost = () => {
             }}
         />
         <button className="upload-button">Select post thumbnail</button>
-        <button className="create-button">Post</button>
+        <button onClick={() => console.log(text)} className="create-button">Post</button>
     </div>
   );
 };
+
+const ViewPosts = () => {
+  return (
+    <div className="view-posts">
+            <div className="post">
+                <div className="post-image"></div>
+                <div className="post-title">
+                    <h3>Como integrar o graphQL com react</h3>
+                </div>
+                <div className="view-posts-options">
+                    <button className="update"><FiEdit size={20} color='white' /></button>
+                    <button className="delete"><FiTrash size={20} color='white' /></button>
+                </div>
+                </div>
+            </div>
+  )
+}
 
 const Profile = () => {
   return (
@@ -50,18 +75,7 @@ const Profile = () => {
           <div className="option update-post">Update Post</div>
         </div>
         <div className="selected-option">
-            <div className="view-posts">
-                <div className="post">
-                    <div className="post-image"></div>
-                    <div className="post-title">
-                        <h3>Como integrar o graphQL com react</h3>
-                    </div>
-                    <div className="view-posts-options">
-                        <button className="update"><FiEdit size={20} color='white' /></button>
-                        <button className="delete"><FiTrash size={20} color='white' /></button>
-                    </div>
-                </div>
-            </div>
+            <CreatePost />
         </div>
       </div>
     </div>
