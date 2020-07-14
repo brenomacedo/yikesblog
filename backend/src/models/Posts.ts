@@ -1,5 +1,27 @@
-import { Entity, Column } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm'
 
-@Entity({
-    name: "posts"
-})
+@Entity({ name: "posts" })
+export default class Users {
+    @PrimaryGeneratedColumn("increment")
+    id!: number
+
+    @Column()
+    title!: string
+    
+    @Column({
+        type: "text"
+    })
+    content!: string
+
+    @Column()
+    urlImage!: string
+
+    @Column()
+    views!: number
+
+    @CreateDateColumn()
+    date!: Date
+
+    @Column()
+    userId!: number
+}
