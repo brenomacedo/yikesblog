@@ -5,7 +5,7 @@ import {
     QueryRunner
 } from 'typeorm'
 
-export default class createPosts implements MigrationInterface {
+export default class createPosts1594693202586 implements MigrationInterface {
     async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
             name: "posts",

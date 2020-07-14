@@ -5,7 +5,7 @@ import {
     TableForeignKey
 } from 'typeorm'
 
-export class createUsers implements MigrationInterface {
+export class createUsers1594693164813 implements MigrationInterface {
     async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
             name: "users",
@@ -25,20 +25,8 @@ export class createUsers implements MigrationInterface {
                 }, {
                     name: "password",
                     type: "varchar"
-                }, {
-                    name: "posts",
-                    type: "int",
-                    isArray: true
                 }
             ]
-        }))
-
-        await queryRunner.createForeignKey("users", new TableForeignKey({
-            columnNames: ["posts"],
-            referencedColumnNames: ["id"],
-            referencedTableName: "posts",
-            onDelete: "CASCADE",
-            onUpdate: "CASCADE"
         }))
     }
 
