@@ -1,7 +1,8 @@
-import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn, ManyToOne } from 'typeorm'
+import Users from './Users'
 
 @Entity({ name: "posts" })
-export default class Users {
+export default class Posts {
     @PrimaryGeneratedColumn("increment")
     id!: number
 
@@ -22,6 +23,6 @@ export default class Users {
     @CreateDateColumn()
     date!: Date
 
-    @Column()
-    userId!: number
+    @ManyToOne(type => Users, users => users.posts)
+    user!: Users
 }

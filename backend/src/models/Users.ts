@@ -1,4 +1,5 @@
-import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm'
+import { Entity, Column, PrimaryGeneratedColumn, OneToMany } from 'typeorm'
+import Posts from './Posts'
 
 @Entity({ name: "users" })
 export default class Users {
@@ -15,4 +16,7 @@ export default class Users {
 
     @Column()
     password!: string
+
+    @OneToMany(type => Posts, posts => posts.user)
+    posts!: Posts[]
 }
