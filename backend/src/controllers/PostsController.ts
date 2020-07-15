@@ -12,7 +12,7 @@ export default class PostsController {
         this.postsRepository = getRepository(Posts)
     }
 
-    @Post("/posts")
+    @Post("/posts/create")
     async createPost(@Req() request: Request, @Res() response: Response) {
         const post = new Posts()
         post.title = request.body.title
@@ -25,21 +25,21 @@ export default class PostsController {
         return response.status(200).send("Post criado com sucesso")
     }
 
-    @Get("/posts")
+    @Get("/posts/get")
     async getPosts(@Req() request: Request, @Res() response: Response) {
         const posts = await this.postsRepository.find()
         return response.status(200).json(posts)
     }
 
-    @Get("/posts/:id")
+    @Get("/posts/get/:id")
     async getPost(@Req() request: Request, @Res() response: Response) {
-        const post = await this.postsRepository.findByIds([request.params.id], {
+        const post = await this.postsRepository.findOne(request.params.id, {
             relations: ["user"]
         })
-        return response.status(200).json(post[0])
+        return response.status(200).json(post)
     }
 
-    @Get("/search")
+    @Get("/posts/search")
     async searchPosts(@Req() request: Request, @Res() response: Response) {
         const posts = await this.postsRepository.find({
             where: {
@@ -48,5 +48,28 @@ export default class PostsController {
         })
 
         return response.status(200).json(posts)
+    }
+
+    @Put("/posts/update/:id")
+    async updatePost(@Req() request: Request, @Res() response: Response) {
+        const post = await this.postsRepository.findOne(request.params.id)
+        
+        if(!post) {
+            return response.send(404).send("post not found")
+        }
+
+        post.title = request.body.title
+        post.content = request.body.content
+
+        await this.postsRepository.save(post)
+
+        return response.status(200).send("post successfuly updated")
+    }
+
+    @Delete("/posts/delete/:id")
+    async deletePost(@Req() request: Request, @Res() response: Response) {
+        await this.postsRepository.delete(request.params.id)
+        
+        return response.status(200).send("post successfuly deleted")
     }
 }
