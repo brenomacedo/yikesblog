@@ -17,12 +17,16 @@ export default class UsersController {
     @Post("/users")
     async post(@Req() request: Request, @Res() response: Response) {
        const user = new Users()
-       user.login = "brenozz"
-       user.nickname = "brenoZz"
-       user.password = "brenoo"
+
+       const password = await bcrypt.hash(request.body.password, 10)
+       user.login = request.body.login
+       user.nickname = request.body.nickname
+       user.password = password
 
        await this.userRepository.save(user)
 
        response.send("usuario criado com sucesso")
     }
+
+    
 }
