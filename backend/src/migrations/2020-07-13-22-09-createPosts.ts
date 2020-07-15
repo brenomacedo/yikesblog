@@ -6,7 +6,7 @@ import {
 } from 'typeorm'
 
 export default class createPosts1594693202586 implements MigrationInterface {
-    async up(queryRunner: QueryRunner): Promise<void> {
+    public async up(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.createTable(new Table({
             name: "posts",
             columns: [
@@ -46,7 +46,7 @@ export default class createPosts1594693202586 implements MigrationInterface {
         }))
     }
 
-    async down(queryRunner: QueryRunner): Promise<void> {
+    public async down(queryRunner: QueryRunner): Promise<void> {
         await queryRunner.dropTable("posts")
     }
 }

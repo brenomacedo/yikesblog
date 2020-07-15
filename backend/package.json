@@ -4,6 +4,7 @@
   "main": "index.js",
   "license": "MIT",
   "devDependencies": {
+    "@types/bcrypt": "^3.0.0",
     "@types/body-parser": "^1.19.0",
     "@types/express": "^4.17.7",
     "@types/multer": "^1.4.3",
@@ -11,6 +12,7 @@
     "typescript": "^3.9.6"
   },
   "dependencies": {
+    "bcrypt": "^5.0.0",
     "body-parser": "^1.19.0",
     "class-transformer": "^0.2.3",
     "class-validator": "^0.12.2",
@@ -24,6 +26,9 @@
   },
   "scripts": {
     "start": "ts-node src/index.ts",
-    "dev": "ts-node-dev --respawn --transpile-only src/index.ts"
+    "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
+    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
+    "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert",
+    "migration:create": "ts-node ./node_modules/typeorm/cli.js migration:generate -n"
   }
 }
