@@ -17,8 +17,13 @@ export default class Posts {
     @Column()
     urlImage!: string
 
-    @Column()
+    @Column({
+        default: 0
+    })
     views!: number
+
+    @Column()
+    userId!: number
 
     @CreateDateColumn()
     date!: Date

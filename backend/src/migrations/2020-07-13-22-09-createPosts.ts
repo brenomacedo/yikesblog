@@ -28,10 +28,12 @@ export default class createPosts1594693202586 implements MigrationInterface {
                     type: "varchar"
                 }, {
                     name: "views",
-                    type: "int"
+                    type: "int",
+                    default: 0
                 }, {
                     name: "date",
-                    type: "date"
+                    type: "timestamp",
+                    default: "now()"
                 }, {
                     name: "userId",
                     type: "int"
