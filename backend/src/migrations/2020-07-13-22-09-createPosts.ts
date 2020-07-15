@@ -13,7 +13,9 @@ export default class createPosts1594693202586 implements MigrationInterface {
                 {
                     name: "id",
                     type: "int",
-                    isPrimary: true
+                    isPrimary: true,
+                    isGenerated: true,
+                    generationStrategy: "increment"
                 }, {
                     name: "title",
                     type: "varchar",
@@ -35,7 +37,7 @@ export default class createPosts1594693202586 implements MigrationInterface {
                     type: "int"
                 }
             ]
-        }))
+        }), true)
 
         await queryRunner.createForeignKey("posts", new TableForeignKey({
             columnNames: ["userId"],

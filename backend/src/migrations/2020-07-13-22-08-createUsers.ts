@@ -13,7 +13,9 @@ export class createUsers1594693164813 implements MigrationInterface {
                 {
                     name: "id",
                     type: "int",
-                    isPrimary: true
+                    isPrimary: true,
+                    isGenerated: true,
+                    generationStrategy: "increment"
                 }, {
                     name: "nickname",
                     type: "varchar",
@@ -27,7 +29,7 @@ export class createUsers1594693164813 implements MigrationInterface {
                     type: "varchar"
                 }
             ]
-        }))
+        }), true)
     }
 
     async down(queryRunner: QueryRunner): Promise<void> {
