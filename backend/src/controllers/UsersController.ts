@@ -1,10 +1,11 @@
 import { Controller, Param, Body, Get, Post, Put, Delete, BodyParam, QueryParam, Req, Res, UseBefore } from 'routing-controllers'
-import { Request, Response } from 'express'
+import { Request, Response, response } from 'express'
 import { getConnectionManager, Repository, getRepository } from 'typeorm'
 import Users from '../models/Users'
 import bcrypt from 'bcrypt'
 import jwt from 'jsonwebtoken'
 import { key } from '../hash.json'
+import authenticate from '../middlewares/auth'
 
 
 @Controller()
@@ -55,7 +56,11 @@ export default class UsersController {
                 nickname: user.nickname
             }
         })
+    }
 
-        
+    @Get("/auth")
+    @UseBefore(authenticate)
+    testAuth(@Req() request: Request, @Res() response: Response) {
+        return response.status(200).json(request.body.userId)
     }
 }
