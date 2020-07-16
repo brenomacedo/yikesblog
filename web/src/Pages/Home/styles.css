@@ -30,7 +30,6 @@
 }
 
 .each-slide-1, .each-slide-2, .each-slide-3 {
-    width: 900px;
     cursor: pointer;
 }
 
@@ -74,5 +73,61 @@
 
     .presentation-content h2 {
         padding-top: 60px;
+    }
+}
+
+@media screen and (max-width: 920px) {
+    .slider {
+        width: 500px;
+    }
+    
+    .each-slide-1, .each-slide-2, .each-slide-3 {
+        cursor: pointer;
+    }
+    
+    .each-slide-1 .slide-image {
+        height: 250px;
+    }
+    
+    .each-slide-2 .slide-image {
+        height: 250px;
+    }
+    
+    .each-slide-3 .slide-image {
+        height: 250px;
+    }
+    
+    .slider-wrapper h2 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+        padding: 10px;
+    }
+}
+
+@media screen and (max-width: 520px) {
+    .slider {
+        width: 380px;
+    }
+    
+    .each-slide-1, .each-slide-2, .each-slide-3 {
+        cursor: pointer;
+    }
+    
+    .each-slide-1 .slide-image {
+        height: 190px;
+    }
+    
+    .each-slide-2 .slide-image {
+        height: 190px;
+    }
+    
+    .each-slide-3 .slide-image {
+        height: 190px;
+    }
+    
+    .slider-wrapper h2 {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 20px;
+        padding: 10px;
     }
 }

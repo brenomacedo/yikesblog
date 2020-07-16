@@ -4,7 +4,7 @@ import './styles.css'
 const Footer = () => {
     return (
         <div className="footer">
-            <p>Todos os direitos Reservados - YikesBlog</p>
+            <p>All rights reserved - YikesBlog</p>
         </div>
     )
 }
