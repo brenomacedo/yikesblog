@@ -34,9 +34,7 @@ export default class PostsController {
 
     @Get("/posts/get/:id")
     async getPost(@Req() request: Request, @Res() response: Response) {
-        const post = await this.postsRepository.findOne(request.params.id, {
-            relations: ["user"]
-        })
+        const post = await this.postsRepository.findOne(request.params.id)
 
         if(!post) {
             return response.status(400).send("user not found")
@@ -56,6 +54,23 @@ export default class PostsController {
         })
 
         return response.status(200).json(posts)
+    }
+
+    @Get("/posts/path/get")
+    async getPostsByPath(@Req() request: Request, @Res() response: Response) {
+        const post = await this.postsRepository.findOne({
+            where: {
+                path: request.query.path
+            }, relations: ["user"]
+        })
+
+        if(!post) {
+            return response.status(400).send("post not found")
+        }
+
+        post.user.password = undefined as unknown as string
+
+        return response.status(200).json(post)
     }
 
     @Put("/posts/update/:id")

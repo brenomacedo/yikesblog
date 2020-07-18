@@ -30,7 +30,7 @@ export default function (request: Request, response: Response, next: NextFunctio
         }
 
         const user = decode as decode
-        request.body.userId = user.id
+        request.body.user = user
     })
 
     next()

@@ -1,5 +1,7 @@
 .post-content {
     min-height: 100vh;
+    font-family: 'Open Sans', sans-serif;
+    padding: 40px;
 }
 
 .other-posts {
@@ -7,6 +9,12 @@
     justify-content: space-between;
     flex-wrap: wrap;
 }
+
+.error {
+    color: red;
+    text-align: center;
+}
+
 
 @media screen and (max-width: 600px) {
     .other-posts {

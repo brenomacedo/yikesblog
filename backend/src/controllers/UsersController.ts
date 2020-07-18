@@ -47,7 +47,7 @@ export default class UsersController {
             return response.status(400).send("Senha incorreta!")
         }
 
-        const token = jwt.sign({ id: user.id }, key, { expiresIn: 86400 })
+        const token = jwt.sign({ user }, key, { expiresIn: 86400 })
 
         user.password = undefined as unknown as string
         return response.status(200).json({
@@ -58,6 +58,7 @@ export default class UsersController {
     @Get("/auth")
     @UseBefore(authenticate)
     testAuth(@Req() request: Request, @Res() response: Response) {
-        return response.status(200).json(request.body.userId)
+        request.body.user.user.password = undefined
+        return response.status(200).json(request.body.user.user)
     }
 }

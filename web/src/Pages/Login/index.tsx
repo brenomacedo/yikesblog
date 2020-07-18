@@ -15,6 +15,7 @@ const Login = () => {
     }
 
     useEffect(() => {
+        console.log(sessionStorage.getItem("token"))
         if(sessionStorage.getItem("token")) {
             axios.get("/auth", {
                 headers: {

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import { FiLogOut, FiTrash, FiEdit } from "react-icons/fi"
 import { Editor } from "@tinymce/tinymce-react"
 import { useHistory, useLocation } from "react-router-dom"
@@ -18,10 +18,17 @@ const CreatePost = () => {
   const location = useLocation<ILocation>()
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const history = useHistory()
 
   const handleEditorChange = (content: string, editor: string) => {
     setContent(content)
   }
+
+  useEffect(() => {
+    if(!location.state.user) {
+      history.push('/')
+    }
+  }, [])
 
   const insertPost = async () => {
     try {
