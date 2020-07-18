@@ -39,6 +39,19 @@ export default class PostsController {
         return response.status(200).json(posts)
     }
 
+    @Get("/views/get")
+    async getMostViewedPosts(@Req() request: Request, @Res() response: Response) {
+        const posts = await this.postsRepository.find({
+            take: 3,
+            select: ['title', 'urlImage', 'id', 'path', 'views'],
+            order: {
+                views: "DESC"
+            }
+        })
+
+        return response.status(200).json(posts)
+    }
+
     @Get("/posts/get/:id")
     async getPost(@Req() request: Request, @Res() response: Response) {
         const post = await this.postsRepository.findOne(request.params.id)
@@ -46,8 +59,6 @@ export default class PostsController {
         if(!post) {
             return response.status(400).send("user not found")
         }
-
-        post.user.password = undefined as unknown as string
 
         return response.status(200).json(post)
     }
@@ -75,6 +86,8 @@ export default class PostsController {
             return response.status(400).send("post not found")
         }
 
+        post.views++
+        await this.postsRepository.save(post)
         post.user.password = undefined as unknown as string
 
         return response.status(200).json(post)

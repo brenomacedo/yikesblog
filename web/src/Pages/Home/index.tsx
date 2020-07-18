@@ -1,12 +1,32 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Slide } from 'react-slideshow-image'
 import TopBar from '../../components/Topbar'
 import LastPosts from '../../components/LastPosts'
 import Footer from '../../components/Footer'
 import 'react-slideshow-image/dist/styles.css'
+import axios from 'axios'
 import './styles.css'
+import { useHistory } from 'react-router-dom'
 
 const Home = () => {
+
+    interface IItem {
+        id: number
+        path: string
+        views: number
+        urlImage: string
+        title: string
+    }
+
+    const [list, setList] = useState<IItem[]>([])
+    const history = useHistory()
+    useEffect(() => {
+        axios.get<IItem[]>("/views/get").then(resp => {
+            setList(resp.data)
+        }).catch(err => {
+
+        })
+    }, [])
 
     const properties =  {
         duration: 3000,
@@ -15,6 +35,19 @@ const Home = () => {
         indicators: true,
         arrows: false,
         pauseOnHover: true
+    }
+
+    const redirect = (path: string) => {
+        history.push(`/post/${path}`)
+    }
+
+    const renderSlides = () => {
+        return list.map((item, index) => (
+            <div onClick={() => redirect(item.path)} className={`each-slide-${index + 1}`}>
+                <div className="slide-image"></div>
+                <h2 className="slide-title">{item.title}</h2>
+            </div>
+        ))
     }
 
     return (
@@ -38,18 +71,7 @@ const Home = () => {
                 <h2>Most visited</h2>
                 <div className="slider">
                     <Slide {...properties}>
-                        <div className="each-slide-1">
-                            <div className="slide-image"></div>
-                            <h2 className="slide-title">Top 30 extensões do VSCODE</h2>
-                        </div>
-                        <div className="each-slide-2">
-                            <div className="slide-image"></div>
-                            <h2 className="slide-title">GraphQL ou REST, qual usar?</h2>
-                        </div>
-                        <div className="each-slide-3">
-                            <div className="slide-image"></div>
-                            <h2 className="slide-title">Como começar no React Native</h2>
-                        </div>
+                        {renderSlides()}
                     </Slide>
                 </div>
             </div>
