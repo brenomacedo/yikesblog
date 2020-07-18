@@ -1,4 +1,4 @@
-import React, { useState, FormEvent } from 'react'
+import React, { useState, FormEvent, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
 import axios from 'axios'
 import './styles.css'
@@ -14,6 +14,19 @@ const Login = () => {
         }
     }
 
+    useEffect(() => {
+        if(sessionStorage.getItem("token")) {
+            axios.get("/").then(resp => {
+                axios.defaults.headers.authorization = resp.data
+                history.push("/profile", {
+                    token: resp.data
+                })
+            }).catch(err => {
+                return
+            })
+        }
+    }, [])
+
     const history = useHistory()
 
     const [login, setLogin] = useState('')
@@ -27,6 +40,9 @@ const Login = () => {
                 login,
                 password
             })
+
+            axios.defaults.headers.authorization = user.data.token
+            sessionStorage.setItem("token", user.data.token)
 
             history.push("/profile", {
                 user: user.data.user
