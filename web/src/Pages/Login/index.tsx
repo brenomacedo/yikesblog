@@ -21,21 +21,20 @@ const Login = () => {
 
     const handleLogin = async (event: FormEvent<HTMLButtonElement>) => {
         event.preventDefault()
-        const user = await axios.post<IUser>("/users/signin", {
-            login,
-            password
-        })
+        
+        try {
+            const user = await axios.post<IUser>("/users/signin", {
+                login,
+                password
+            })
 
-        if(!user) {
-            alert("User not found!")
-            return
+            history.push("/profile", {
+                user: user.data.user
+            })
+        } catch (e) {
+            alert("user not found!")
         }
-
-        console.log(user)
-
-        // history.push("/profile", {
-        //     user: user.data.user
-        // })
+    
         
     }
 

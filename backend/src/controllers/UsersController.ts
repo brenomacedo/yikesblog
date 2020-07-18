@@ -49,7 +49,7 @@ export default class UsersController {
 
         const token = jwt.sign({ id: user.id }, key, { expiresIn: 86400 })
 
-        return response.status(400).json({
+        return response.status(200).json({
             token, user: {
                 id: user.id,
                 login: user.login,

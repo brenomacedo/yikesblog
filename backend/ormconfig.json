@@ -9,8 +9,7 @@
         "./src/models/*.ts"
     ],
     "migrations": [
-        "./src/migrations/Posts.ts",
-        "./src/migrations/Users.ts"
+        "./src/migrations/*.ts"
     ],
     "cli": {
         "entitiesDir": "./src/models",
