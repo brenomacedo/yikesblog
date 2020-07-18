@@ -24,7 +24,7 @@ const LastPosts = () => {
 
     const renderPosts = () => {
         return posts.map(post => (
-            <Post {...post} />
+            <Post key={post.id} {...post} />
         ))
     }
 

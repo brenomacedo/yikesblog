@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Topbar from '../../components/Topbar'
 import Footer from '../../components/Footer'
-import Post from '../../components/Post'
+import LastPosts from '../../components/LastPosts'
 import parser from 'html-react-parser'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
@@ -82,19 +82,14 @@ const PostPage = () => {
             <Topbar />
             <div className="post-content">
                 {renderContent()}
-                {() => {
-                    if(!error) {
-                        return (
-                            <div className="post-info-user">
+                {!error ? (<div className="post-info-user">
                                 <br/>
                                 <h2>Posted by: {post.user.nickname} at {genDate(post.date)}</h2>
-                            </div>
-                        )
-                    }
-                }}
+                            </div>) : false}
+                 
             </div>
             <div className="other-posts">
-                
+                <LastPosts />
             </div>
             <Footer />
         </div>

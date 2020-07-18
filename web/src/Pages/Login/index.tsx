@@ -13,9 +13,10 @@ const Login = () => {
             nickname: string
         }
     }
+    
+    const history = useHistory()
 
     useEffect(() => {
-        console.log(sessionStorage.getItem("token"))
         if(sessionStorage.getItem("token")) {
             axios.get("/auth", {
                 headers: {
@@ -29,9 +30,8 @@ const Login = () => {
                 console.log(err)
             })
         }
-    }, [])
+    }, [history])
 
-    const history = useHistory()
 
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
