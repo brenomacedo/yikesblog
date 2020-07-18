@@ -1,12 +1,21 @@
 import React, { useState } from "react"
 import { FiLogOut, FiTrash, FiEdit } from "react-icons/fi"
 import { Editor } from "@tinymce/tinymce-react"
+import { useHistory, useLocation } from "react-router-dom"
 import axios from 'axios'
 import "./styles.css"
-import { useHistory } from "react-router-dom"
 
 const CreatePost = () => {
 
+  interface ILocation {
+    user: {
+      id: number
+      login: string
+      nickname: string
+    }
+  }
+
+  const location = useLocation<ILocation>()
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
 
@@ -15,16 +24,27 @@ const CreatePost = () => {
   }
 
   const insertPost = async () => {
-    await axios.post("/posts/create", {
-      title,
-      content
-    })
+    try {
+      await axios.post("/posts/create", {
+        title,
+        content,
+        userId: location.state.user.id,
+        urlImage: "/image.png",
+        path: title.toLocaleLowerCase().split(' ').join('-')
+      })
+
+      alert('post successfuly added!')
+      setTitle('')
+      setContent('')
+    } catch(e) {
+      alert("an error ocurred, try again")
+    }
   }
 
   return (
     <div className="create-post">
         <h3>Post title:</h3>
-        <input onChange={e => setTitle(e.target.value)} placeholder="my post title" type="text" />
+        <input value={title} onChange={e => setTitle(e.target.value)} placeholder="my post title" type="text" />
         <Editor
             value={content} onEditorChange={handleEditorChange}
             apiKey="w32catiriiirutgmkiypr53w0cpy3rughud01410u38ke1i6"
