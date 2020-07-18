@@ -1,5 +1,6 @@
 .post-content {
     min-height: 100vh;
+    word-wrap: break-word;
     font-family: 'Open Sans', sans-serif;
     padding: 40px;
 }

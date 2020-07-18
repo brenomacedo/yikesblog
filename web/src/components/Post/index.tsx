@@ -1,14 +1,29 @@
 import React from 'react'
 import './styles.css'
+import { useHistory } from 'react-router-dom'
 
-const Post = () => {
+interface IPost {
+    id: number
+    urlImage: string
+    path: string
+    title: string
+}
+
+const Post: React.FC<IPost> = (props) => {
+
+    const history = useHistory()
+
+    const redirect = () => {
+        history.push(`/post/${props.path}`)
+    }
+
     return (
-        <div className="post">
+        <div onClick={redirect} className="post">
             <div className="post-image">
 
             </div>
             <div className="post-title">
-                <p>Como integrar o graphql com o react</p>
+                <p>{props.title}</p>
             </div>
         </div>
     )

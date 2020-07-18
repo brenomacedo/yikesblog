@@ -28,7 +28,14 @@ export default class PostsController {
 
     @Get("/posts/get")
     async getPosts(@Req() request: Request, @Res() response: Response) {
-        const posts = await this.postsRepository.find()
+        const posts = await this.postsRepository.find({
+            take: 4,
+            select: ['title', 'urlImage', 'id', 'path'],
+            order: {
+                id: "DESC"
+            }
+        })
+
         return response.status(200).json(posts)
     }
 

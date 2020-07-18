@@ -21,7 +21,7 @@ const PostPage = () => {
         views: number
         userId: number
         path: string
-        date: Date
+        date: string
         user: {
             id: number
             login: string
@@ -32,7 +32,7 @@ const PostPage = () => {
     const params = useParams<IParams>()
 
     const [error, setError] = useState(false)
-    const [post, setPost] = useState({
+    const [post, setPost] = useState<IPost>({
         id: 0,
         title: '',
         content: '',
@@ -40,7 +40,12 @@ const PostPage = () => {
         views: 0,
         userId: 0,
         path: '',
-        date: new Date()
+        date: '',
+        user: {
+            login: '',
+            nickname: '',
+            id: 0
+        }
     })
 
     useEffect(() => {
@@ -49,9 +54,8 @@ const PostPage = () => {
 
     const getPost = async () => {
         try {
-            const postData = await axios.get(`/posts/path/get?path=${params.path}`)
+            const postData = await axios.get<IPost>(`/posts/path/get?path=${params.path}`)
             setPost(postData.data)
-            console.log(postData.data)
         } catch(e) {
             setError(true)
         }
@@ -68,17 +72,29 @@ const PostPage = () => {
         }
     }
 
+    const genDate = (date: string) => {
+        const separated = date.split('T')
+        return `${separated[0]}`
+    }
+
     return (
         <div className="postpage-container">
             <Topbar />
             <div className="post-content">
                 {renderContent()}
+                {() => {
+                    if(!error) {
+                        return (
+                            <div className="post-info-user">
+                                <br/>
+                                <h2>Posted by: {post.user.nickname} at {genDate(post.date)}</h2>
+                            </div>
+                        )
+                    }
+                }}
             </div>
             <div className="other-posts">
-                <Post />
-                <Post />
-                <Post />
-                <Post />
+                
             </div>
             <Footer />
         </div>
