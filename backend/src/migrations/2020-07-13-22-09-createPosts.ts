@@ -37,6 +37,9 @@ export default class createPosts1594693202586 implements MigrationInterface {
                 }, {
                     name: "userId",
                     type: "int"
+                }, {
+                    name: "path",
+                    type: "varchar"
                 }
             ]
         }), true)

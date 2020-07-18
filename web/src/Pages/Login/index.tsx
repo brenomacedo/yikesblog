@@ -16,13 +16,16 @@ const Login = () => {
 
     useEffect(() => {
         if(sessionStorage.getItem("token")) {
-            axios.get("/").then(resp => {
-                axios.defaults.headers.authorization = resp.data
+            axios.get("/auth", {
+                headers: {
+                    authorization: sessionStorage.getItem("token")
+                }
+            }).then(resp => {
                 history.push("/profile", {
-                    token: resp.data
+                    user: resp.data
                 })
             }).catch(err => {
-                return
+                console.log(err)
             })
         }
     }, [])
@@ -41,8 +44,8 @@ const Login = () => {
                 password
             })
 
-            axios.defaults.headers.authorization = user.data.token
-            sessionStorage.setItem("token", user.data.token)
+            axios.defaults.headers.authorization = `Bearer ${user.data.token}`
+            sessionStorage.setItem("token", `Bearer ${user.data.token}`)
 
             history.push("/profile", {
                 user: user.data.user

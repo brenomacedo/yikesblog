@@ -25,6 +25,9 @@ export default class Posts {
     @Column()
     userId!: number
 
+    @Column()
+    path!: string
+
     @CreateDateColumn()
     date!: Date
 

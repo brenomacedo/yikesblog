@@ -19,6 +19,7 @@ export default class PostsController {
         post.content = request.body.content
         post.userId = request.body.userId
         post.urlImage = request.body.urlImage
+        post.path = request.body.path
 
         await this.postsRepository.save(post)
 
@@ -36,6 +37,13 @@ export default class PostsController {
         const post = await this.postsRepository.findOne(request.params.id, {
             relations: ["user"]
         })
+
+        if(!post) {
+            return response.status(400).send("user not found")
+        }
+
+        post.user.password = undefined as unknown as string
+
         return response.status(200).json(post)
     }
 

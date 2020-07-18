@@ -1,27 +1,36 @@
-import React, { useState } from "react";
-import { FiLogOut, FiTrash, FiEdit } from "react-icons/fi";
-import { Editor } from "@tinymce/tinymce-react";
-import "./styles.css";
+import React, { useState } from "react"
+import { FiLogOut, FiTrash, FiEdit } from "react-icons/fi"
+import { Editor } from "@tinymce/tinymce-react"
+import axios from 'axios'
+import "./styles.css"
+import { useHistory } from "react-router-dom"
 
 const CreatePost = () => {
 
-  const [text, setText] = useState('')
+  const [title, setTitle] = useState('')
+  const [content, setContent] = useState('')
 
   const handleEditorChange = (content: string, editor: string) => {
-    setText(content)
-    console.log(text)
+    setContent(content)
+  }
+
+  const insertPost = async () => {
+    await axios.post("/posts/create", {
+      title,
+      content
+    })
   }
 
   return (
     <div className="create-post">
         <h3>Post title:</h3>
-        <input type="text" />
+        <input onChange={e => setTitle(e.target.value)} placeholder="my post title" type="text" />
         <Editor
-            value={text} onEditorChange={handleEditorChange}
+            value={content} onEditorChange={handleEditorChange}
             apiKey="w32catiriiirutgmkiypr53w0cpy3rughud01410u38ke1i6"
             init={{
-            height: 300,
-            menubar: false,
+            height: 500,
+            menubar: true,
             plugins: [
                 "advlist autolink lists link image charmap print preview anchor",
                 "searchreplace visualblocks code fullscreen",
@@ -32,7 +41,7 @@ const CreatePost = () => {
             }}
         />
         <button className="upload-button">Select post thumbnail</button>
-        <button onClick={() => console.log(text)} className="create-button">Post</button>
+        <button onClick={insertPost} className="create-button">Post</button>
     </div>
   );
 };
@@ -55,6 +64,15 @@ const ViewPosts = () => {
 }
 
 const Profile = () => {
+
+  const history = useHistory()
+
+  const logout = () => {
+    sessionStorage.clear()
+    axios.defaults.headers.authorization = ''
+    history.push('/')
+  }
+
   return (
     <div className="profile-container">
       <div className="admin-bar">
@@ -62,7 +80,7 @@ const Profile = () => {
           <div className="admin-image"></div>
           <h3>admin</h3>
         </div>
-        <div className="logout">
+        <div onClick={logout} className="logout">
           <h3>LogOut</h3>
           <FiLogOut color="white" size={20} />
         </div>

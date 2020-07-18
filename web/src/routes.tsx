@@ -1,10 +1,10 @@
 import React from 'react'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import { BrowserRouter, Route } from 'react-router-dom'
 import Home from './Pages/Home'
 import Login from './Pages/Login'
-import PostPage from './Pages/PostPage'
+//import PostPage from './Pages/PostPage'
 import Profile from './Pages/Profile'
-import Search from './Pages/Search'
+//import Search from './Pages/Search'
 
 const Routes = () => {
     return (
