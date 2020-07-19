@@ -17,6 +17,7 @@ export default class UsersController {
         this.userRepository = getConnectionManager().get().getRepository(Users)
     }
 
+    @UseBefore(authenticate)
     @Post("/users/signup")
     async createUser(@Req() request: Request, @Res() response: Response) {
        const user = new Users()

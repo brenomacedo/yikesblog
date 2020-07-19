@@ -33,7 +33,7 @@ const Search = () => {
         }
 
         setResults(location.state.posts)
-    }, [])
+    }, [location.state, history])
 
     return (
         <div className="search-container">

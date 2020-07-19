@@ -35,12 +35,6 @@ const CreatePost = () => {
     setContent(content)
   }
 
-  useEffect(() => {
-    if(!location.state.user) {
-      history.push('/')
-    }
-  }, [])
-
   const insertPost = async () => {
 
     const formData = new FormData()
@@ -203,8 +197,8 @@ const ViewPosts: React.FC<IViewPostsProps> = (props) => {
   }
 
   const renderViewPost = () => {
-    return list.map(post => (
-      <div className="view-post">
+    return list.map((post, index) => (
+      <div key={index} className="view-post">
         <div className="view-post-image" style={{
           backgroundImage: `url('http://localhost:3003/${post.urlImage}')`
         }}></div>
@@ -236,6 +230,14 @@ const Profile = () => {
   const history = useHistory()
   const [tab, setTab] = useState('VIEW')
   const [idToUpdate, setIdToUpdate] = useState(0)
+
+  const location = useLocation()
+
+  useEffect(() => {
+    if(!location.state) {
+      history.push('/')
+    }
+  }, [location.state])
 
   const logout = () => {
     sessionStorage.clear()

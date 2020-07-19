@@ -48,10 +48,7 @@ const PostPage = () => {
         }
     })
 
-    useEffect(() => {
-        getPost()
-    }, [])
-
+    
     const getPost = async () => {
         try {
             const postData = await axios.get<IPost>(`/posts/path/get?path=${params.path}`)
@@ -61,6 +58,10 @@ const PostPage = () => {
         }
         
     }
+    
+    useEffect(() => {
+        getPost()
+    }, [])
 
     const renderContent = () => {
         if(error) {

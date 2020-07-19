@@ -33,6 +33,7 @@
     "dev": "ts-node-dev --respawn --transpile-only src/index.ts",
     "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
     "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert",
-    "migration:create": "ts-node ./node_modules/typeorm/cli.js migration:generate -n"
+    "migration:create": "ts-node ./node_modules/typeorm/cli.js migration:generate -n",
+    "seed:users": "ts-node src/seeds/SeedUsers.ts"
   }
 }
