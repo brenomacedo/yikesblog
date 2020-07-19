@@ -190,13 +190,13 @@ const ViewPosts: React.FC<IViewPostsProps> = (props) => {
     })
   }
 
-  const deletePost = (id: number, title: string) => {
+  const deletePost = (id: number, title: string, urlImage: string) => {
     const permission = window.confirm(`Are you sure you want to delete the post '${title}'?`)
     if(!permission) {
       return
     }
 
-    axios.delete(`/posts/delete/${id}`).then(resp => {
+    axios.delete(`/posts/delete/${id}?urlImage=${urlImage}`).then(resp => {
       alert('post deletado com sucesso!')
       refresh()
     }).catch(err => {})
@@ -217,7 +217,7 @@ const ViewPosts: React.FC<IViewPostsProps> = (props) => {
             props.setIdToUpdate(post.id)
           }}><FiEdit size={20} color='white' /></button>
           <button className="delete" onClick={() => {
-            deletePost(post.id, post.title)
+            deletePost(post.id, post.title, post.urlImage)
           }}><FiTrash size={20} color='white' /></button>
         </div>
       </div>

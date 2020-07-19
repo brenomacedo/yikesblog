@@ -1,9 +1,10 @@
 import { Controller, Get, Post, Put, Delete, Req, Res, UploadedFile, UseBefore } from 'routing-controllers'
 import { Request, Response } from 'express'
 import { Repository, getRepository, Like } from 'typeorm'
+import fs from 'fs'
+import path from 'path'
 import multerConfig from '../config/multer'
 import Posts from '../models/Posts'
-import bodyParser from 'body-parser'
 
 
 @Controller()
@@ -128,7 +129,14 @@ export default class PostsController {
     @Delete("/posts/delete/:id")
     async deletePost(@Req() request: Request, @Res() response: Response) {
         await this.postsRepository.delete(request.params.id)
-        
+        fs.unlink(path.resolve(__dirname, '..', '..', 'tmp', 'uploads', String(request.query.urlImage)), (err) => {
+            if(err) {
+                console.log(err)
+                return
+            }
+
+            console.log('file deleted')
+        })
         return response.status(200).send("post successfuly deleted")
     }
 }
