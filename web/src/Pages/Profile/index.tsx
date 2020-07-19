@@ -1,9 +1,19 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, Dispatch, SetStateAction } from "react"
 import { FiLogOut, FiTrash, FiEdit } from "react-icons/fi"
 import { Editor } from "@tinymce/tinymce-react"
 import { useHistory, useLocation } from "react-router-dom"
 import axios from 'axios'
 import "./styles.css"
+
+interface IUpdateProps {
+  idToUpdate: number
+  setTab: Dispatch<SetStateAction<string>>
+}
+
+interface IViewPostsProps {
+  setIdToUpdate: Dispatch<SetStateAction<number>>
+  setTab: Dispatch<SetStateAction<string>>
+}
 
 const CreatePost = () => {
 
@@ -73,7 +83,7 @@ const CreatePost = () => {
   )
 }
 
-const UpdatePost = () => {
+const UpdatePost: React.FC<IUpdateProps> = (props) => {
 
   interface ILocation {
     user: {
@@ -83,14 +93,28 @@ const UpdatePost = () => {
     }
   }
 
+  interface IPost {
+    title: string
+    content: string
+    urlImage: string
+  }
+
   const location = useLocation<ILocation>()
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
   const history = useHistory()
-
+  
   const handleEditorChange = (content: string, editor: string) => {
     setContent(content)
   }
+
+  useEffect(() => {
+    axios.get<IPost>(`/posts/get/${props.idToUpdate}`)
+      .then(resp => {
+        setTitle(resp.data.title)
+        setContent(resp.data.content)
+      }).catch(err => {})
+  }, [])
 
   useEffect(() => {
     if(!location.state.user) {
@@ -98,7 +122,14 @@ const UpdatePost = () => {
     }
   }, [])
 
-  
+  const updatePost = async (id: number) => {
+    await axios.put(`/posts/update/${id}`, {
+      title,
+      content
+    })
+    alert('post successfuly updated!')
+    props.setTab('VIEW')
+  }
 
   return (
     <div className="create-post">
@@ -120,12 +151,12 @@ const UpdatePost = () => {
             }}
         />
         <button className="upload-button">Select post thumbnail</button>
-        <button onClick={() => {}} className="create-button">Post</button>
+        <button onClick={() => updatePost(props.idToUpdate)} className="create-button">Update!</button>
     </div>
   );
 };
 
-const ViewPosts = () => {
+const ViewPosts: React.FC<IViewPostsProps> = (props) => {
 
   interface IPost {
     id: number
@@ -144,9 +175,9 @@ const ViewPosts = () => {
     axios.get<IPost[]>('/posts/all/get')
       .then(resp => {
         setList(resp.data)
-      }).catch(err => {
+    }).catch(err => {
 
-      })
+    })
   }
 
   const deletePost = (id: number, title: string) => {
@@ -171,7 +202,10 @@ const ViewPosts = () => {
           <h3>{post.title}</h3>
         </div>
         <div className="view-posts-options">
-          <button className="update"><FiEdit size={20} color='white' /></button>
+          <button className="update" onClick={() => {
+            props.setTab("UPDATE")
+            props.setIdToUpdate(post.id)
+          }}><FiEdit size={20} color='white' /></button>
           <button className="delete" onClick={() => {
             deletePost(post.id, post.title)
           }}><FiTrash size={20} color='white' /></button>
@@ -191,6 +225,7 @@ const Profile = () => {
 
   const history = useHistory()
   const [tab, setTab] = useState('VIEW')
+  const [idToUpdate, setIdToUpdate] = useState(0)
 
   const logout = () => {
     sessionStorage.clear()
@@ -200,13 +235,13 @@ const Profile = () => {
 
   const renderTab = () => {
     if(tab === 'VIEW')
-      return <ViewPosts />
+      return <ViewPosts setIdToUpdate={setIdToUpdate} setTab={setTab} />
 
     if(tab === 'CREATE')
       return <CreatePost />
 
     if(tab === 'UPDATE')
-      return <UpdatePost />
+      return <UpdatePost idToUpdate={idToUpdate} setTab={setTab} />
   }
 
   return (
