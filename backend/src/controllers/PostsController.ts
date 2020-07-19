@@ -26,6 +26,18 @@ export default class PostsController {
         return response.status(200).send("Post criado com sucesso")
     }
 
+    @Get("/posts/all/get")
+    async getAllPosts(@Req() request: Request, @Res() response: Response) {
+        const posts = await this.postsRepository.find({
+            select: ['title', 'urlImage', 'id', 'path'],
+            order: {
+                id: "DESC"
+            }
+        })
+
+        return response.status(200).json(posts)
+    }
+
     @Get("/posts/get")
     async getPosts(@Req() request: Request, @Res() response: Response) {
         const posts = await this.postsRepository.find({

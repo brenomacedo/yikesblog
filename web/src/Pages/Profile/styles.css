@@ -123,25 +123,32 @@
     flex-direction: column;
 }
 
-.view-posts .post {
+.view-posts .view-post {
     padding: 8px;
     display: flex;
     align-items: center;
     justify-content: space-between;
 }
 
-.view-posts .post .post-title h3 {
+.view-posts .view-post .view-post-title {
+    width: 100%;
+}
+
+.view-posts .view-post .view-post-title h3 {
     font-family: 'Open Sans', sans-serif;
     font-size: 20px;
     padding: 10px;
 }
 
-.view-posts .post .post-image {
+.view-posts .view-post .view-post-image {
     width: 70px;
     height: 50px;
-    background-image: url('/slide1.png');
     background-size: cover;
     background-position: center;
+}
+
+.view-posts-options {
+    display: flex;
 }
 
 .update {
@@ -150,6 +157,7 @@
     outline: none;
     padding: 10px;
     margin-right: 5px;
+    cursor: pointer;
 }
 
 .delete {
@@ -157,4 +165,5 @@
     border: 0;
     outline: none;
     padding: 10px;
+    cursor: pointer;
 }
