@@ -43,8 +43,10 @@ const Home = () => {
 
     const renderSlides = () => {
         return list.map((item, index) => (
-            <div onClick={() => redirect(item.path)} className={`each-slide-${index + 1}`}>
-                <div className="slide-image"></div>
+            <div onClick={() => redirect(item.path)} className='each-slide'>
+                <div className="slide-image" style={{
+                    backgroundImage: `url('http://localhost:3003/${item.urlImage}')`
+                }}></div>
                 <h2 className="slide-title">{item.title}</h2>
             </div>
         ))

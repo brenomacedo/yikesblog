@@ -1,7 +1,10 @@
-import { Controller, Get, Post, Put, Delete, Req, Res } from 'routing-controllers'
-import { Request, Response, response } from 'express'
+import { Controller, Get, Post, Put, Delete, Req, Res, UploadedFile, UseBefore } from 'routing-controllers'
+import { Request, Response } from 'express'
 import { Repository, getRepository, Like } from 'typeorm'
+import multerConfig from '../config/multer'
 import Posts from '../models/Posts'
+import bodyParser from 'body-parser'
+
 
 @Controller()
 export default class PostsController {
@@ -13,12 +16,13 @@ export default class PostsController {
     }
 
     @Post("/posts/create")
-    async createPost(@Req() request: Request, @Res() response: Response) {
+    async uploadFile(@UploadedFile("filename", { options: multerConfig }) file: any,
+    @Req() request: Request, @Res() response: Response) {
         const post = new Posts()
         post.title = request.body.title
         post.content = request.body.content
         post.userId = request.body.userId
-        post.urlImage = request.body.urlImage
+        post.urlImage = file.key
         post.path = request.body.path
 
         await this.postsRepository.save(post)

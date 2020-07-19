@@ -28,6 +28,7 @@ const CreatePost = () => {
   const location = useLocation<ILocation>()
   const [title, setTitle] = useState('')
   const [content, setContent] = useState('')
+  const [file, setFile] = useState<File>()
   const history = useHistory()
 
   const handleEditorChange = (content: string, editor: string) => {
@@ -41,14 +42,17 @@ const CreatePost = () => {
   }, [])
 
   const insertPost = async () => {
+
+    const formData = new FormData()
+    formData.append("title", title)
+    formData.append("content", content)
+    formData.append("userId", `${location.state.user.id}`)
+    formData.append("path", title.toLocaleLowerCase().split(' ').join('-'))
+    formData.append("filename", file as Blob)
+    
+
     try {
-      await axios.post("/posts/create", {
-        title,
-        content,
-        userId: location.state.user.id,
-        urlImage: "/image.png",
-        path: title.toLocaleLowerCase().split(' ').join('-')
-      })
+      await axios.post("/posts/create", formData)
 
       alert('post successfuly added!')
       setTitle('')
@@ -77,7 +81,13 @@ const CreatePost = () => {
                 "undo redo | formatselect | bold italic backcolor | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | removeformat | help",
             }}
         />
-        <button className="upload-button">Select post thumbnail</button>
+        <input type='file' id='upload' style={{display: "none"}} onChange={e => {
+          if(!e.target.files) {
+            return
+          }
+          setFile(e.target.files[0])
+        }} />
+        <label htmlFor='upload' className="upload-button">Select post thumbnail</label>
         <button onClick={insertPost} className="create-button">Post</button>
     </div>
   )
@@ -196,7 +206,7 @@ const ViewPosts: React.FC<IViewPostsProps> = (props) => {
     return list.map(post => (
       <div className="view-post">
         <div className="view-post-image" style={{
-          backgroundImage: `url('${post.urlImage}')`
+          backgroundImage: `url('http://localhost:3003/${post.urlImage}')`
         }}></div>
         <div className="view-post-title">
           <h3>{post.title}</h3>

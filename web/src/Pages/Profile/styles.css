@@ -86,6 +86,8 @@
     background-color: #2ac74e;
     color: white;
     height: 50px;
+    text-align: center;
+    line-height: 50px;
     font-family: 'Open Sans', sans-serif;
     font-size: 18px;
 }

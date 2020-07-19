@@ -20,9 +20,8 @@
 
 .post .post-image {
     height: 180px;
-    background-image: url('/image.png');
     background-size: cover;
-    background-position: contain;
+    background-position: center;
 }
 
 .post-title {

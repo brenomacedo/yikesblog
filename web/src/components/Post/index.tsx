@@ -19,9 +19,9 @@ const Post: React.FC<IPost> = (props) => {
 
     return (
         <div onClick={redirect} className="post">
-            <div className="post-image">
-
-            </div>
+            <div className="post-image" style={{
+                backgroundImage: `url('http://localhost:3003/${props.urlImage}')`
+            }}></div>
             <div className="post-title">
                 <p>{props.title}</p>
             </div>
