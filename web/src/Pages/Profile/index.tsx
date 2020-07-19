@@ -137,13 +137,29 @@ const ViewPosts = () => {
   const [list, setList] = useState<IPost[]>([])
 
   useEffect(() => {
+    refresh()
+  }, [])
+
+  const refresh = () => {
     axios.get<IPost[]>('/posts/all/get')
       .then(resp => {
         setList(resp.data)
       }).catch(err => {
 
       })
-  }, [])
+  }
+
+  const deletePost = (id: number, title: string) => {
+    const permission = window.confirm(`Are you sure you want to delete the post '${title}'?`)
+    if(!permission) {
+      return
+    }
+
+    axios.delete(`/posts/delete/${id}`).then(resp => {
+      alert('post deletado com sucesso!')
+      refresh()
+    }).catch(err => {})
+  }
 
   const renderViewPost = () => {
     return list.map(post => (
@@ -156,7 +172,9 @@ const ViewPosts = () => {
         </div>
         <div className="view-posts-options">
           <button className="update"><FiEdit size={20} color='white' /></button>
-          <button className="delete"><FiTrash size={20} color='white' /></button>
+          <button className="delete" onClick={() => {
+            deletePost(post.id, post.title)
+          }}><FiTrash size={20} color='white' /></button>
         </div>
       </div>
     ))
