@@ -169,3 +169,15 @@
     padding: 10px;
     cursor: pointer;
 }
+
+@media screen and (max-width: 820px) {
+    .panel {
+        width: 600px;
+    }
+}
+
+@media screen and (max-width: 620px) {
+    .panel {
+        width: 350px;
+    }
+}
