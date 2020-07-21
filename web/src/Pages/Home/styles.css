@@ -1,3 +1,8 @@
+.presentation-container {
+    max-width: 1366px;
+    margin: 0 auto;
+}
+
 .presentation-header {
     min-height: 100vh;
     background-color: #0099ff;

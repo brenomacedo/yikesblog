@@ -56,13 +56,15 @@ const Home = () => {
         <div className="home-container">
             <div className="presentation">
                 <div className="presentation-header">
-                    <TopBar />
-                    <div className="presentation-content">
-                        <h2>
-                            Welcome to Yikes Blog! Improve your blue flame and learn the best javascript stack!
-                            Here you can find posts about: Typescript, React and more!
-                        </h2>
-                        <div className="presentation-content-image"></div>
+                    <div className="presentation-container">
+                        <TopBar />
+                        <div className="presentation-content">
+                            <h2>
+                                Welcome to Yikes Blog! Improve your blue flame and learn the best javascript stack!
+                                Here you can find posts about: Typescript, React and more!
+                            </h2>
+                            <div className="presentation-content-image"></div>
+                        </div>
                     </div>
                 </div>
                 <svg className="svg-bottom" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
