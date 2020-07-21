@@ -28,6 +28,12 @@
 <h2>- In the same folder, run 'npm run start' and 'npm run seed:users'</h2>
 <h2>- In both folders, run npm start</h2>
 
+Icons made by <a href="https://www.flaticon.com/authors/vitaly-gorbachev" title="Vitaly Gorbachev">Vitaly Gorbachev</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+Icons made by <a href="https://www.flaticon.com/br/autores/kiranshastry" title="Kiranshastry">Kiranshastry</a> from <a href="https://www.flaticon.com/br/" title="Flaticon"> www.flaticon.com</a>
+
+
+
+
 <h2>Nice! Your application is ready to work!</h2>
 <h1>Made with 💙 by Breno Macêdo!</h1>
 <h1>📘 License: MIT</h1>
