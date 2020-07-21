@@ -16,9 +16,13 @@ const TopBar = () => {
         })
     }
 
+    const toHome = () => {
+        history.push('/')
+    }
+
     return (
         <div className="topbar">
-            <div className="logo">
+            <div className="logo" onClick={toHome}>
                 <div className="logo-image"></div>
                 <h3>Yikes!</h3>
             </div>

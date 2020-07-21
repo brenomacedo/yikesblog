@@ -6,6 +6,7 @@
 
 .post {
     width: 270px;
+    background-color: #0099ff;
     -webkit-box-shadow: 2px 3px 36px -8px rgba(0,0,0,0.75);
     -moz-box-shadow: 2px 3px 36px -8px rgba(0,0,0,0.75);
     box-shadow: 2px 3px 36px -8px rgba(0,0,0,0.75);
